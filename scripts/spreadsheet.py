@@ -1,9 +1,9 @@
 '''
 Author: Paula Tovar
 Title: Monkey Biochemistry Spreadsheets
-Description: Program that connects biochemistry spreadsheets to ID information.
+Description: Program that connects biochemistry spreadsheets to ID information. Also imputes column mean where data is missing. Saves 2 spreadsheets.
 Date Created: 02/19/25
-Date Last Modified: 6/10/25
+Date Last Modified: 6/16/25
 '''
 
 import pandas as pd
@@ -47,3 +47,14 @@ print(connected_df.iloc[0])
 
 # making connected dataframe into Excel spreadsheet
 connected_df.to_excel('../dat/connected_spreadsheet_MATRR.xlsx', index = False)
+
+# data imputation
+for col in connected_df.columns:
+  try:
+    mean = connected_df[col].mean()
+    connected_df[col] = connected[df].fillna(mean)
+  except:
+    continue
+
+# save imputed dataframe in Excel spreadsheet
+connected_df.to_excel('../dat/imputed.xlsx', index = False)

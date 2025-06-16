@@ -1,7 +1,7 @@
 '''
 Author: Paula Tovar
 Title: Introductory Plots
-Description: Program that makes initial summary plots.
+Description: Program that makes initial summary plots. Saves plots to a pre-existing folder. 
 Date Created: 03/26/25
 Date Last Modified: 06/10/25
 '''

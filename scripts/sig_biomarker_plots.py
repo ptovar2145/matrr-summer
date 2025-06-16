@@ -1,7 +1,7 @@
 '''
 Author: Paula Tovar
 Title: Introductory Plots for Significant Biomarkers
-Description: Program that makes plots of significant biomarkers.
+Description: Program that makes plots of significant biomarkers. Saves plots to a pre-existing folder. 
 Date Created: 06/10/25
 Date Last Modified: 06/10/25
 '''
