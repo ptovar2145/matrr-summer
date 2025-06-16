@@ -1,0 +1,1 @@
+This is a folder containing correlation matrices and clustermaps for each speacies of monkey. Each type of plot only contains data from 2 timepoints in order to observe changes over the study. For these plots, missing values were imputed with 0. 
