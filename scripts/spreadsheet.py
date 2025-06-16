@@ -1,9 +1,9 @@
 '''
 Author: Paula Tovar
 Title: Monkey Biochemistry Spreadsheets
-Description: Program that connects biochemistry spreadsheets to ID information.
+Description: Program that connects biochemistry spreadsheets to ID information. Also imputes column mean where data is missing. Saves 2 spreadsheets.
 Date Created: 02/19/25
-Date Last Modified: 6/10/25
+Date Last Modified: 6/16/25
 '''
 
 import pandas as pd
