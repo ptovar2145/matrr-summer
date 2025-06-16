@@ -47,3 +47,14 @@ print(connected_df.iloc[0])
 
 # making connected dataframe into Excel spreadsheet
 connected_df.to_excel('../dat/connected_spreadsheet_MATRR.xlsx', index = False)
+
+# data imputation
+for col in connected_df.columns:
+  try:
+    mean = connected_df[col].mean()
+    connected_df[col] = connected[df].fillna(mean)
+  except:
+    continue
+
+# save imputed dataframe in Excel spreadsheet
+connected_df.to_excel('../dat/imputed.xlsx', index = False)
