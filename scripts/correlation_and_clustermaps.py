@@ -1,7 +1,8 @@
 '''
 Author: Paula Tovar
 Title: Correlation Matrices and Clustermaps
-Description: Program that makes correlation matrices and clustermaps for each species. Each plot is only for specific timepoints.
+Description: Program that makes correlation matrices and clustermaps for each species. Each plot is only for specific timepoints. Saves plots to a
+             pre-existing folder. 
 Date Created: 06/11/25
 Date Last Modified: 06/16/25
 '''
