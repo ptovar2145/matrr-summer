@@ -1,0 +1,1 @@
+This is a folder containing correlation matrice and clustermaps for each species. The plots only contain data from specific timepoints in order to compare how biomarkers change over time. The missing values were imputed with the mean. 
