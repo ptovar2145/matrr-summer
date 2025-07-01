@@ -22,31 +22,32 @@ def missing_proportion(df):
         proportion = (num_na / df.shape[0]) * 100
         print(f"{col} {proportion:.2f}%")
     return 
-    
-# summary data
-print(f"Number of rows: {data_df.shape[0]}")
-print(f"Number of columns: {data_df.shape[1]}")
-print()
 
-print(counts(data_df, "drinking_category"))
-print()
+if __name__ == "__main__":
+    # summary data
+    print(f"Number of rows: {data_df.shape[0]}")
+    print(f"Number of columns: {data_df.shape[1]}")
+    print()
 
-print(counts(data_df, "Species"))
-print()
+    print(counts(data_df, "drinking_category"))
+    print()
 
-print(counts(data_df, "sex"))
-print()
+    print(counts(data_df, "Species"))
+    print()
 
-# proportion of NAs per column
-print("Proportion of NAs per column for all monkeys:")
-missing_proportion(data_df)
-print()
+    print(counts(data_df, "sex"))
+    print()
 
-print("Proportion of NAs per column for cyno monkeys:")
-cyno_df = data_df[data_df["Species"] == "cyno"]
-missing_proportion(cyno_df)
-print()
+    # proportion of NAs per column
+    print("Proportion of NAs per column for all monkeys:")
+    missing_proportion(data_df)
+    print()
 
-print("Proportion of NAs per column for rhesus monkeys:")
-rhesus_df = data_df[data_df["Species"] == "rhesus"]
-missing_proportion(rhesus_df)
+    print("Proportion of NAs per column for cyno monkeys:")
+    cyno_df = data_df[data_df["Species"] == "cyno"]
+    missing_proportion(cyno_df)
+    print()
+
+    print("Proportion of NAs per column for rhesus monkeys:")
+    rhesus_df = data_df[data_df["Species"] == "rhesus"]
+    missing_proportion(rhesus_df)
