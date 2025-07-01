@@ -80,4 +80,4 @@ visual_matrix(cyno_matrices, "Cynomolgus Macaques")
 visual_clustermap(cyno_cluster_maps, "Cynomolgus Macaques")
 
 visual_matrix(rhesus_matrices, "Rhesus Macaques")
-visueal_clustermap(rhesus_cluster_maps, "Rhesus Macaques")
+visual_clustermap(rhesus_cluster_maps, "Rhesus Macaques")
