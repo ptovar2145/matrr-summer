@@ -61,23 +61,24 @@ def visual_clustermap(clustermap_list, species_name):
     plot_path = os.path.join(folder_path, f"{species_name}_cluster_map{i}.png")
     clustermap_list[i].fig.savefig(plot_path)
     clustermap_list[i].fig.show()
-    
-# cynomolgus macaques
-cyno_df = data_df[data_df["Species"] == "cyno"]
-cyno_dataframes = timepoint_df(cyno_df)
-cyno_matrices, cyno_cluster_maps = make_plots(cyno_dataframes)
 
-# rhesus macaques
-rhesus_df = data_df[data_df["Species"] == "rhesus"]
-rhesus_dataframes = timepoint_df(rhesus_df)
-rhesus_matrices, rhesus_cluster_maps = make_plots(rhesus_dataframes)
+if __name__ == "__main__":
+  # cynomolgus macaques
+  cyno_df = data_df[data_df["Species"] == "cyno"]
+  cyno_dataframes = timepoint_df(cyno_df)
+  cyno_matrices, cyno_cluster_maps = make_plots(cyno_dataframes)
 
-# visualization
-folder_path = "../plots/correlation matrices 5/"
-timepoint_pairs = [["baseline", "open access 1"], ["open access 1", "open access 2"], ["baseline", "open access 2"]]
+  # rhesus macaques
+  rhesus_df = data_df[data_df["Species"] == "rhesus"]
+  rhesus_dataframes = timepoint_df(rhesus_df)
+  rhesus_matrices, rhesus_cluster_maps = make_plots(rhesus_dataframes)
 
-visual_matrix(cyno_matrices, "Cynomolgus Macaques")
-visual_clustermap(cyno_cluster_maps, "Cynomolgus Macaques")
+  # visualization
+  folder_path = "../plots/correlation matrices 5/"
+  timepoint_pairs = [["baseline", "open access 1"], ["open access 1", "open access 2"], ["baseline", "open access 2"]]
 
-visual_matrix(rhesus_matrices, "Rhesus Macaques")
-visual_clustermap(rhesus_cluster_maps, "Rhesus Macaques")
+  visual_matrix(cyno_matrices, "Cynomolgus Macaques")
+  visual_clustermap(cyno_cluster_maps, "Cynomolgus Macaques")
+
+  visual_matrix(rhesus_matrices, "Rhesus Macaques")
+  visual_clustermap(rhesus_cluster_maps, "Rhesus Macaques")
