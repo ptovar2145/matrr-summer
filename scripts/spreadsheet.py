@@ -1,9 +1,9 @@
 '''
 Author: Paula Tovar
 Title: Monkey Biochemistry Spreadsheets
-Description: Program that connects biochemistry spreadsheets to ID information. Also imputes column mean where data is missing. Saves 2 spreadsheets.
+Description: Program that connects biochemistry spreadsheets to ID information. Removes columns where NA is over 50%. Also imputes means where data is missing. Saves 2 spreadsheets.
 Date Created: 02/19/25
-Date Last Modified: 6/16/25
+Date Last Modified: 6/26/25
 '''
 
 import pandas as pd
@@ -17,6 +17,7 @@ id_df = pd.read_csv(id_data_path)
 
 # cleaning up columns
 biochem_df.drop(labels = ["Unnamed: 44", "Unnamed: 45"], axis = 1, inplace = True)
+biochem_df.drop(labels = ["DBIL:", "Amyl:", "BAND%:"], axis = 1, inplace = True)
 
 # removing unnecessary timepoints to remain with "baseline" and "open access 1/2"
 timepoints = ["baseline", "open access 1", "open access 2"]

@@ -4,7 +4,7 @@ Title: Correlation Matrices and Clustermaps
 Description: Program that makes correlation matrices and clustermaps for each species. Each plot is only for specific timepoints. Saves plots to a
              pre-existing folder. 
 Date Created: 06/11/25
-Date Last Modified: 06/16/25
+Date Last Modified: 06/23/25
 '''
 
 import pandas as pd
@@ -13,9 +13,10 @@ import matplotlib.pyplot as plt
 import os
 
 # read in data
-data_path = "../dat/imputed.xlsx"
+data_path = "../dat/standardized.xlsx"
 data_df = pd.read_excel(data_path)
-columns_to_drop = [0 1, 2, 3, 4, 5, 6, 7]
+data_df = data_df.set_index(["MATRR ID", "Timepoint"], drop = False)
+columns_to_drop = [0, 1, 2, 3, 4, 5, 6, 7]
 
 # cynomolgus macaques
 cyno_df = data_df[data_df["Species"] == "cyno"]
@@ -60,7 +61,7 @@ for df in rhesus_dataframes:
     plt.close(cluster_map.fig)
 
 # visualization
-folder_path = "../plots/correlation matrices 3/"
+folder_path = "../plots/correlation matrices 5/"
 timepoint_pairs = [["baseline", "open access 1"], ["open access 1", "open access 2"], ["baseline", "open access 2"]]
 
 for i in range(len(cyno_matrices)):
