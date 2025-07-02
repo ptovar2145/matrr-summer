@@ -3,20 +3,13 @@ Author: Paula Tovar
 Title: Introductory Plots
 Description: Program that makes initial summary plots. Saves plots to a pre-existing folder. 
 Date Created: 03/26/25
-Date Last Modified: 06/10/25
+Date Last Modified: 07/02/25
 '''
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import os
-
-# reading in data
-data_path = "../dat/connected_spreadsheet_MATRR.xlsx"
-data_df = pd.read_excel(data_path)
-
-# name of folder
-folder_path = "../plots/initial plots 2"
 
 # functions 
 def boxplot(df, x, y, title):
@@ -31,6 +24,13 @@ def boxplot(df, x, y, title):
     plt.show()
 
 if __name__ == "__main__":
+    # reading in data
+    data_path = "../dat/connected_spreadsheet_MATRR.xlsx"
+    data_df = pd.read_excel(data_path)
+
+    # name of folder
+    folder_path = "../plots/initial plots 2"
+    
     # boxplots by drinking category
     boxplot(data_df, "drinking_category", "NA:", "Drinking Category")       # sodium
     boxplot(data_df, "drinking_category", "GLU:", "Drinking Category")      # glucose
