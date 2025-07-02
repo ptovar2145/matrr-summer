@@ -13,19 +13,6 @@ from sklearn.metrics.cluster import adjusted_rand_score
 import matplotlib.pyplot as plt
 import numpy as np
 
-# read in data
-data_path = "../dat/standardized.xlsx"
-data_df = pd.read_excel(data_path)
-data_df = data_df.set_index('MATRR ID', drop = False)
-
-# dataframes based on timepoint
-columns_to_drop = [0, 1, 2, 3, 4, 5, 6, 7]
-baseline_df = data_df[data_df["Timepoint"] == "baseline"]
-numeric_baseline = baseline_df.drop(baseline_df.columns[columns_to_drop], axis = 1)
-
-open_df = data_df[data_df["Timepoint"] == "open access 1"]
-numeric_open = open_df.drop(open_df.columns[columns_to_drop], axis = 1)
-
 # functions
 def k_means(data, k):
     k_means = KMeans(n_clusters = k, random_state = 0)
@@ -110,42 +97,56 @@ def model(data_df, time_df, num_clusters):
   results_df = truth_labels(results_df, num_clusters)
   return results_df
 
-# baseline - K = 2
-baseline2_results = model(numeric_baseline, baseline_df, 2)
-plot(baseline2_results, 2, "Baseline Clustering with 2 Clusters")
-print(rand_index(baseline2_results))
+if __name__ == "__main__":
+  # read in data
+  data_path = "../dat/standardized.xlsx"
+  data_df = pd.read_excel(data_path)
+  data_df = data_df.set_index('MATRR ID', drop = False)
 
-# open access 1 - K = 2
-open2_results = model(numeric_open, open_df, 2)
-plot(open2_results, 2, "Open Access 1 Clustering with 2 Clusters")
-print(rand_index(open2_results))
+  # dataframes based on timepoint
+  columns_to_drop = [0, 1, 2, 3, 4, 5, 6, 7]
+  baseline_df = data_df[data_df["Timepoint"] == "baseline"]
+  numeric_baseline = baseline_df.drop(baseline_df.columns[columns_to_drop], axis = 1)
 
-# baseline - K = 4
-baseline4_results = model(numeric_baseline, baseline_df, 4)
-plot(baseline4_results, 4, "Baseline Clustering with 4 Clusters")
-print(rand_index(baseline4_results))
+  open_df = data_df[data_df["Timepoint"] == "open access 1"]
+  numeric_open = open_df.drop(open_df.columns[columns_to_drop], axis = 1)
 
-# open access 1 - K = 4
-open4_results = model(numeric_open, open_df, 4)
-plot(open4_results, 4, "Open Access 1 Clustering with 4 Clusters")
-print(rand_index(open4_results))
+  # baseline - K = 2
+  baseline2_results = model(numeric_baseline, baseline_df, 2)
+  plot(baseline2_results, 2, "Baseline Clustering with 2 Clusters")
+  print(rand_index(baseline2_results))
 
-# optimal number of clusters
-inertia_baseline = inertia(numeric_baseline, 1, 10)
-inertia_open = inertia(numeric_open, 1, 10)
+  # open access 1 - K = 2
+  open2_results = model(numeric_open, open_df, 2)
+  plot(open2_results, 2, "Open Access 1 Clustering with 2 Clusters")
+  print(rand_index(open2_results))
 
-plt.plot(range(1, 10 + 1), inertia_baseline,
-         marker = "o",
-         linestyle = "--",
-         color = "blue",
-         label = "baseline")
-plt.plot(range(1, 10 + 1), inertia_open,
-         marker = "o",
-         linestyle = "--",
-         color = "red",
-         label = "open access")
-plt.xlabel("K")
-plt.ylabel("Inertia")
-plt.title("Inertia over different number of clusters")
-plt.legend(loc = "lower left")
-plt.show()
+  # baseline - K = 4
+  baseline4_results = model(numeric_baseline, baseline_df, 4)
+  plot(baseline4_results, 4, "Baseline Clustering with 4 Clusters")
+  print(rand_index(baseline4_results))
+
+  # open access 1 - K = 4
+  open4_results = model(numeric_open, open_df, 4)
+  plot(open4_results, 4, "Open Access 1 Clustering with 4 Clusters")
+  print(rand_index(open4_results))
+
+  # optimal number of clusters
+  inertia_baseline = inertia(numeric_baseline, 1, 10)
+  inertia_open = inertia(numeric_open, 1, 10)
+
+  plt.plot(range(1, 10 + 1), inertia_baseline,
+           marker = "o",
+           linestyle = "--",
+           color = "blue",
+           label = "baseline")
+  plt.plot(range(1, 10 + 1), inertia_open,
+           marker = "o",
+           linestyle = "--",
+           color = "red",
+           label = "open access")
+  plt.xlabel("K")
+  plt.ylabel("Inertia")
+  plt.title("Inertia over different number of clusters")
+  plt.legend(loc = "lower left")
+  plt.show()
