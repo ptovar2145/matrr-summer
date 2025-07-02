@@ -12,12 +12,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
-# read in data
-data_path = "../dat/standardized.xlsx"
-data_df = pd.read_excel(data_path)
-data_df = data_df.set_index(["MATRR ID", "Timepoint"], drop = False)
-columns_to_drop = [0, 1, 2, 3, 4, 5, 6, 7]
-
 # functions
 def timepoint_df(species_df):
   base_open1 = species_df[species_df["Timepoint"].isin(["baseline", "open access 1"])]
@@ -63,6 +57,12 @@ def visual_clustermap(clustermap_list, species_name):
     clustermap_list[i].fig.show()
 
 if __name__ == "__main__":
+  # read in data
+  data_path = "../dat/standardized.xlsx"
+  data_df = pd.read_excel(data_path)
+  data_df = data_df.set_index(["MATRR ID", "Timepoint"], drop = False)
+  columns_to_drop = [0, 1, 2, 3, 4, 5, 6, 7]
+  
   # cynomolgus macaques
   cyno_df = data_df[data_df["Species"] == "cyno"]
   cyno_dataframes = timepoint_df(cyno_df)
