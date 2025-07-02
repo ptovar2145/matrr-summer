@@ -4,7 +4,7 @@ Title: K-Means Clustering
 Description: Two k-means models, one having 2 clusters and the other with 4. Baseline and Open Access 1 have their
              own models.
 Date Created: 06/26/25
-Date Last Modified: 06/30/25
+Date Last Modified: 07/02/25
 '''
 
 import pandas as pd
@@ -100,51 +100,33 @@ def truth_labels(result_df, num_clusters):
 
     return result_df
 
-# baseline - K = 2
-baseline_labels_2, baseline_model_2 = k_means(numeric_baseline, 2)
-baseline_centers_2 = baseline_model_2.cluster_centers_
+def model(data_df, time_df, num_clusters):
+  labels, model = k_means(data_df, num_clusters)
+  centers = model.cluster_centers_
+  result_data = {"MATRR ID": time_df["MATRR ID"],
+                 "drinking_category": time_df["drinking_category"],
+                 "cluster": labels}
+  results_df = pd.DataFrame(result_data)
+  results_df = truth_labels(results_df, num_clusters)
+  return results_df
 
-result_data = {"MATRR ID": baseline_df["MATRR ID"],
-               "drinking_category": baseline_df["drinking_category"],
-               "cluster": baseline_labels_2}
-baseline2_results = pd.DataFrame(result_data)
-baseline2_results = truth_labels(baseline2_results, 2)
+# baseline - K = 2
+baseline2_results = model(numeric_baseline, baseline_df, 2)
 plot(baseline2_results, 2, "Baseline Clustering with 2 Clusters")
 print(rand_index(baseline2_results))
 
 # open access 1 - K = 2
-open_labels_2, open_model_2 = k_means(numeric_open, 2)
-open_centers_2 = open_model_2.cluster_centers_
-
-result_data = {"MATRR ID": open_df["MATRR ID"],
-               "drinking_category": open_df["drinking_category"],
-               "cluster": open_labels_2}
-open2_results = pd.DataFrame(result_data)
-open2_results = truth_labels(open2_results, 2)
+open2_results = model(numeric_open, open_df, 2)
 plot(open2_results, 2, "Open Access 1 Clustering with 2 Clusters")
 print(rand_index(open2_results))
 
 # baseline - K = 4
-baseline_labels_4, baseline_model_4 = k_means(numeric_baseline, 4)
-baseline_centers_4 = baseline_model_4.cluster_centers_
-
-result_data = {"MATRR ID": baseline_df["MATRR ID"],
-               "drinking_category": baseline_df["drinking_category"],
-               "cluster": baseline_labels_4}
-baseline4_results = pd.DataFrame(result_data)
-baseline4_results = truth_labels(baseline4_results, 4)
+baseline4_results = model(numeric_baseline, baseline_df, 4)
 plot(baseline4_results, 4, "Baseline Clustering with 4 Clusters")
 print(rand_index(baseline4_results))
 
 # open access 1 - K = 4
-open_labels_4, open_model_4 = k_means(numeric_open, 4)
-open_centers_4 = open_model_4.cluster_centers_
-
-result_data = {"MATRR ID": open_df["MATRR ID"],
-               "drinking_category": open_df["drinking_category"],
-               "cluster": open_labels_4}
-open4_results = pd.DataFrame(result_data)
-open4_results = truth_labels(open4_results, 4)
+open4_results = model(numeric_open, open_df, 4)
 plot(open4_results, 4, "Open Access 1 Clustering with 4 Clusters")
 print(rand_index(open4_results))
 
@@ -155,12 +137,15 @@ inertia_open = inertia(numeric_open, 1, 10)
 plt.plot(range(1, 10 + 1), inertia_baseline,
          marker = "o",
          linestyle = "--",
-         color = "blue",)
+         color = "blue",
+         label = "baseline")
 plt.plot(range(1, 10 + 1), inertia_open,
          marker = "o",
          linestyle = "--",
-         color = "red")
+         color = "red",
+         label = "open access")
 plt.xlabel("K")
 plt.ylabel("Inertia")
 plt.title("Inertia over different number of clusters")
+plt.legend(loc = "lower left")
 plt.show()
