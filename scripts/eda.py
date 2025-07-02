@@ -8,10 +8,6 @@ Date Last Modified: 07/01/25
 
 import pandas as pd
 
-# read in data
-data_path = "../dat/connected_spreadsheet_MATRR.xlsx"
-data_df = pd.read_excel(data_path)
-
 # functions 
 def counts(df, column):
     return df.groupby(column).size()
@@ -24,6 +20,10 @@ def missing_proportion(df):
     return 
 
 if __name__ == "__main__":
+    # read in data
+    data_path = "../dat/connected_spreadsheet_MATRR.xlsx"
+    data_df = pd.read_excel(data_path)
+
     # summary data
     print(f"Number of rows: {data_df.shape[0]}")
     print(f"Number of columns: {data_df.shape[1]}")
