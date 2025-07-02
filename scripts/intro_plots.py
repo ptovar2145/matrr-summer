@@ -12,14 +12,14 @@ import pandas as pd
 import os
 
 # functions 
-def boxplot(df, x, y, title):
+def boxplot(df, x, y, title, folder):
     sns.boxplot(x = df[x],
                 y = df[y],
                 hue = data_df["Timepoint"],
                 hue_order = ["baseline", "open access 1", "open access 2"])
     plt.title(f"{y} by {title}")
     plt.legend(title = "Timepoint")
-    plot_path = os.path.join(folder_path, f"{y}_{title}.png")
+    plot_path = os.path.join(folder, f"{y}_{title}.png")
     plt.savefig(plot_path)
     plt.show()
 
@@ -32,15 +32,15 @@ if __name__ == "__main__":
     folder_path = "../plots/initial plots 2"
     
     # boxplots by drinking category
-    boxplot(data_df, "drinking_category", "NA:", "Drinking Category")       # sodium
-    boxplot(data_df, "drinking_category", "GLU:", "Drinking Category")      # glucose
-    boxplot(data_df, "drinking_category", "CHOL:", "Drinking Category")     # cholesterol
-    boxplot(data_df, "drinking_category", "WBC:", "Drinking Category")      # white blood cells
-    boxplot(data_df, "drinking_category", "RBC:", "Drinking Category")      # red blood cells
-    boxplot(data_df, "drinking_category", "HGB:", "Drinking Category")      # hemoglobin
-    boxplot(data_df, "drinking_category", "PLT:", "Drinking Category")      # platelets
+    boxplot(data_df, "drinking_category", "NA:", "Drinking Category", folder_path)       # sodium
+    boxplot(data_df, "drinking_category", "GLU:", "Drinking Category", folder_path)      # glucose
+    boxplot(data_df, "drinking_category", "CHOL:", "Drinking Category", folder_path)     # cholesterol
+    boxplot(data_df, "drinking_category", "WBC:", "Drinking Category", folder_path)      # white blood cells
+    boxplot(data_df, "drinking_category", "RBC:", "Drinking Category", folder_path)      # red blood cells
+    boxplot(data_df, "drinking_category", "HGB:", "Drinking Category", folder_path)      # hemoglobin
+    boxplot(data_df, "drinking_category", "PLT:", "Drinking Category", folder_path)      # platelets
 
     # boxplots by sex
-    boxplot(data_df, "sex", "CHOL:", "Sex")                                 # cholesterol
-    boxplot(data_df, "sex", "GLU:", "Sex")                                  # glucose
-    boxplot(data_df, "sex", "HGB:", "Sex")                                  # hemoglobin
+    boxplot(data_df, "sex", "CHOL:", "Sex", folder_path)                                 # cholesterol
+    boxplot(data_df, "sex", "GLU:", "Sex", folder_path)                                  # glucose
+    boxplot(data_df, "sex", "HGB:", "Sex", folder_path)                                  # hemoglobin
