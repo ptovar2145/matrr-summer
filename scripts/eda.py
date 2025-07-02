@@ -3,7 +3,7 @@ Author: Paula Tovar
 Title: Exploratory Data Analysis
 Description: Program that computes summary data.
 Date Created: 06/16/25
-Date Last Modified: 07/01/25
+Date Last Modified: 07/02/25
 '''
 
 import pandas as pd
